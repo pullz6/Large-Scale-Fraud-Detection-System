@@ -5,3 +5,5 @@ scikit-learn
 mlflow
 kaggle
 datetime
+optuna 
+xgboost
