@@ -1,2 +1,4 @@
 data/fraudTest.csv
 data/fraudTrain.csv
+/data
+/params.yaml
