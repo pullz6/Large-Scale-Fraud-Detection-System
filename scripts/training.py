@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import xgboost as xgb
 import sklearn
 from sklearn.metrics import accuracy_score,confusion_matrix, ConfusionMatrixDisplay
-
+import pickle
 from sklearn.model_selection import GridSearchCV, train_test_split
 import optuna
 from datetime import datetime, timedelta
@@ -49,4 +49,7 @@ round_test_predictions = [round(p) for p in test_predictions]
 acc_score = accuracy_score(y_test,round_test_predictions)
 
 print(acc_score)
+
+with open('model.pkl', 'wb') as f:
+    pickle.dump(model, f)
 
