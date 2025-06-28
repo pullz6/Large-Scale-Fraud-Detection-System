@@ -1,7 +1,9 @@
 import pandas as pd
 import numpy as np
 import random
+import yaml
 from sklearn import preprocessing
+import matplotlib.pyplot as plt
 
 import xgboost as xgb
 import sklearn
@@ -32,3 +34,17 @@ dmatrix_test = xgb.DMatrix(data=X_test,label=y_test)
 
 best_parameters = find_best_parameters(dmatrix_train,dmatrix_test, y_test)
 print(best_parameters)
+
+with open("params.yaml", "w") as f:
+    yaml.dump(best_parameters, f)
+
+model = xgb.train(params = best_parameters, dtrain= dmatrix_train)
+
+test_predictions = model.predict(dmatrix_test) 
+round_test_predictions = [round(p) for p in test_predictions]
+
+#Get the accuracy score
+acc_score = accuracy_score(y_test,round_test_predictions)
+
+print(acc_score)
+
