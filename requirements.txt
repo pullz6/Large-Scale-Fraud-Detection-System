@@ -1,9 +1,11 @@
 pandas
 numpy
 seaborn
+matplotlib
 scikit-learn
 mlflow
 kaggle
 datetime
+PyYAML
 optuna 
 xgboost
