@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import random
+import os
 import yaml
 from sklearn import preprocessing
 import matplotlib.pyplot as plt
@@ -32,11 +33,12 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, test_size=
 dmatrix_train = xgb.DMatrix(data=X_train, label=y_train)
 dmatrix_test = xgb.DMatrix(data=X_test,label=y_test)
 
-best_parameters = find_best_parameters(dmatrix_train,dmatrix_test, y_test)
-print(best_parameters)
 
-with open("params.yaml", "w") as f:
-    yaml.dump(best_parameters, f)
+if os.path.exists("params.yaml"):
+    with open("params.yaml", "r") as f:
+        best_parameters = yaml.safe_load(f)
+else:
+    best_parameters = find_best_parameters(dmatrix_train,dmatrix_test, y_test)
 
 model = xgb.train(params = best_parameters, dtrain= dmatrix_train)
 
