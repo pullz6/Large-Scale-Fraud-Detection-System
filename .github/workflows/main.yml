@@ -1,0 +1,52 @@
+name: ML Training Pipeline
+on: [workflow_dispatch, push]
+
+jobs:
+  run_pipeline:
+    runs-on: ubuntu-latest
+    env:
+      MLFLOW_TRACKING_URI: file://${{ github.workspace }}/mlruns
+
+    steps:
+      # Checkout code + install Python
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      # Install requirements
+      - name: Install requirements
+        run: |
+          pip install -r requirements.txt
+          pip install dvc
+
+      # Configure Kaggle API
+      - name: Set up Kaggle
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        run: |
+          mkdir -p ~/.kaggle
+          echo "{\"username\":\"$KAGGLE_USERNAME\",\"key\":\"$KAGGLE_KEY\"}" > ~/.kaggle/kaggle.json
+          chmod 600 ~/.kaggle/kaggle.json
+
+      # Initialize DVC without remote
+      - name: Initialize DVC
+        run: |
+          dvc init --no-scm -f
+          dvc config cache.type symlink  # Optimize for CI
+
+      # Run pipeline
+      - name: Execute pipeline
+        run: |
+          dvc repro
+          
+      # Save MLflow artifacts (since no DVC remote)
+      - name: Archive results
+        uses: actions/upload-artifact@v3
+        with:
+          name: mlflow-artifacts
+          path: |
+            mlruns/
+            model.pkl
+          retention-days: 1
