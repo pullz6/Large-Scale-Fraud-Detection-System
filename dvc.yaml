@@ -7,3 +7,13 @@ stages:
     outs:
     - data/preprocessed_fraudTest.csv
     - data/preprocessed_fraudTrain.csv
+  training:
+    cmd: python scripts/training.py
+    deps:
+    - data/preprocessed_fraudTest.csv
+    - data/preprocessed_fraudTrain.csv
+    - params.yaml
+    - scripts/training.py
+    - scripts/tuning.py
+    outs:
+    - model.pkl
