@@ -1,9 +1,6 @@
 stages:
   preprocessing:
     cmd: python scripts/preprocessing.py
-    deps:
-    - data/fraudTest.csv
-    - data/fraudTrain.csv
     outs:
     - data/preprocessed_fraudTest.csv
     - data/preprocessed_fraudTrain.csv
