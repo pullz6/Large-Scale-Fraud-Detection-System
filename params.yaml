@@ -1,0 +1,10 @@
+alpha: 9.996029128292259e-07
+booster: gbtree
+colsample_bytree: 0.2917195739518202
+eta: 8.388227043651912e-06
+gamma: 0.0014967184926213753
+grow_policy: depthwise
+lambda: 0.5756674322713246
+max_depth: 9
+min_child_weight: 2
+subsample: 0.8756807355511029
