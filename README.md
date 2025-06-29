@@ -10,10 +10,7 @@ This project aims to build an end-to-end MLOps pipeline to detect fraud at sca
 2. [Features]
 3. [Installation]
 4. [Usage]
-5. [Examples]
-6. [Project Structure]
-7. [License]
-8. [Acknowledgments]
+5. [Acknowledgments]
 
 ---
 
@@ -76,8 +73,8 @@ pip install -r requirements.txt
 
 ### Running the Application
 
-If you want to re-run this project you can create a pull request
-If you want to recreate and clone this project please follow the steps under Setup
+- If you want to re-run this project you can create a pull request
+- If you want to recreate and clone this project please follow the steps under Setup
 
 ### Configuration
 
@@ -85,45 +82,6 @@ Set you Kaggle api keys for authentication, you can follow these steps => https:
 
 ---
 
-## Project Structure
-
-```bash
-bash
-Copy code
-project-root/
-│
-├── src/                 # Source files
-├── data/                # Sample datasets
-├── notebooks/           # Jupyter notebooks
-├── tests/               # Unit and integration tests
-├── README.md            # Project documentation
-└── requirements.txt     # Project dependencies
-
-```
-
-Provide brief explanations for each major directory/file if the structure is complex.
-
----
-
-## Contributing
-
-Guidelines for contributing to the project:
-
-- How to submit issues, bug reports, or feature requests.
-- Guidelines for pull requests, including coding standards and testing.
-
----
-
-## License
-
-Specify the license type (e.g., MIT, Apache, etc.) and include a link to the full license file.
-
----
-
 ## Acknowledgments
 
-Shout out to resources, libraries, people, or tutorials that helped you build the project.
-
----
-
-This template makes your project easy to understand, onboard, and use, making it more likely to engage users and contributors.
+DVC documentation - https://dvc.org/doc/command-reference/remove
